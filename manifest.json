@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Problem Picker",
+  "version": "1.0",
+  "description": "Pick random LeetCode problems from uploaded spreadsheets by company",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "LeetCode Problem Picker"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["xlsx.min.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
