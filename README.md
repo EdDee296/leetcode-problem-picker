@@ -83,21 +83,25 @@ Create an Excel file (.xlsx or .xls) with this structure:
 ## 🔧 Advanced Features
 
 ### Progress Tracking
+
 - Automatically marks opened problems as "solved"
 - Track completion progress per company
 - Reset progress for specific companies
 
 ### Smart Selection
+
 - Avoids already solved problems (optional)
 - Respects your frequency-based problem ordering
 - Supports 1-50 problems per session
 
 ### Data Management
+
 - **Update Spreadsheet**: Upload new versions of your Excel file
 - **Reset Progress**: Clear solved problems for any company
 - **Clear All Data**: Remove all stored data and start fresh
 
 ### Debugging Tools
+
 - **Debug File Info**: Analyze uploaded Excel files
 - **Console Logging**: Detailed parsing information
 - **Error Handling**: Clear error messages and solutions
@@ -105,16 +109,19 @@ Create an Excel file (.xlsx or .xls) with this structure:
 ## 🐛 Troubleshooting
 
 ### "No LeetCode URLs found"
+
 - Ensure URLs are in **column A** of each sheet
 - Check URL format: `https://leetcode.com/problems/problem-name/`
 - Verify sheet names are company names
 
 ### "Failed to parse Excel file"
+
 - Try re-saving your Excel file
 - Ensure file is not corrupted
 - Use the **Debug** button to analyze the file
 
 ### Extension not loading
+
 - Check that **Developer mode** is enabled
 - Refresh the extension at `chrome://extensions/`
 - Ensure all files are in the correct folder
@@ -140,6 +147,7 @@ leetcode-picker/
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to:
+
 - Report bugs
 - Suggest new features
 - Submit pull requests
@@ -151,7 +159,7 @@ Contributions are welcome! Please feel free to:
 
 ## 🎉 Getting Started
 
-Ready to boost your LeetCode practice? 
+Ready to boost your LeetCode practice?
 
 1. **Download or clone this repository**
 2. **Follow the installation steps above**
