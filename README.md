@@ -1,4 +1,4 @@
-# 🎯 Lee## ✨ Features
+# 🎯 Leetcode Problem Picker
 
 - 📊 **Professional Excel Support** - Upload .xlsx/.xls files with SheetJS library
 - 🏢 **Company Organization** - Each Excel sheet represents a different company
