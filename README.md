@@ -1,4 +1,14 @@
-# 🎯 LeetCode Problem Picker Chrome Extension
+# 🎯 Lee## ✨ Features
+
+- 📊 **Professional Excel Support** - Upload .xlsx/.xls files with SheetJS library
+- 🏢 **Company Organization** - Each Excel sheet represents a different company
+- 🎲 **Smart Problem Selection** - Pick random problems from specific companies
+- ✅ **Progress Tracking** - Automatically tracks solved problems
+- 🔧 **Advanced Solved Management** - Dedicated window for granular problem control
+- 💾 **Data Persistence** - Remembers your preferences and progress
+- 🚫 **Skip Solved Problems** - Option to avoid already completed problems
+- 📱 **Modern UI** - Beautiful gradient design with intuitive controls
+- 🔍 **Advanced Debugging** - Detailed file analysis toolslem Picker Chrome Extension
 
 A powerful Chrome extension that helps you practice LeetCode problems efficiently by organizing them by company and opening random selections for focused study sessions.
 
@@ -65,6 +75,49 @@ Create an Excel file (.xlsx or .xls) with this structure:
 4. Choose number of problems (1-50)
 5. Toggle **"Skip solved problems"** if desired
 6. Click **"Open Random Problems"**
+7. **Manage solved problems** using the dedicated management window
+
+## 🎯 Solved Problems Management
+
+### Overview
+The extension features a **separate management window** for handling solved problems with granular control:
+
+### Accessing the Manager
+- After selecting a company, if you have solved problems, you'll see: `X solved problems [Manage Solved]`
+- Click **"Manage Solved"** to open the dedicated management window
+
+### Management Features
+
+#### 📊 **Visual Status Indicators**
+- **🔴 Red items**: "Will Skip" - These problems are excluded from future problem selections
+- **🟢 Green items**: "Can Retry" - These problems will be included in future selections
+
+#### 🔧 **Granular Control**
+- **Individual Selection**: Check/uncheck specific problems to change their status
+- **Clear Status Indicators**: Instantly see which problems will be skipped vs. included
+- **Company Statistics**: View solved counts and retry availability per company
+
+#### ⚡ **Bulk Operations**
+- **Mark Selected as Unsolved**: Remove multiple problems from solved status
+- **Real-time Updates**: Changes are immediately saved and synchronized
+- **Status Feedback**: Clear success messages confirm your actions
+
+#### 🎨 **Professional Interface**
+- **Dedicated 900x700 Window**: Spacious interface that doesn't clutter the main extension
+- **Company Organization**: Problems grouped by company for easy navigation
+- **Modern Design**: Consistent gradient theme with intuitive controls
+
+### Workflow Example
+
+1. **Practice Problems**: Use main extension to open and solve problems
+2. **Review Progress**: Check solved count in main interface
+3. **Manage Status**: Click "Manage Solved" to open management window
+4. **Fine-tune Selection**: 
+   - See red problems that will be skipped
+   - See green problems you can retry
+   - Uncheck specific problems you want to practice again
+5. **Apply Changes**: Close window - changes are automatically saved
+6. **Next Session**: Future problem picks respect your preferences
 
 ## 📋 Requirements
 
@@ -86,18 +139,22 @@ Create an Excel file (.xlsx or .xls) with this structure:
 
 - Automatically marks opened problems as "solved"
 - Track completion progress per company
-- Reset progress for specific companies
+- **Advanced solved management** with dedicated interface
+- **Visual status indicators** for skip vs. retry problems
+- **Granular control** over individual problem status
 
 ### Smart Selection
 
 - Avoids already solved problems (optional)
 - Respects your frequency-based problem ordering
 - Supports 1-50 problems per session
+- **Intelligent filtering** based on solved problem preferences
 
 ### Data Management
 
 - **Update Spreadsheet**: Upload new versions of your Excel file
-- **Reset Progress**: Clear solved problems for any company
+- **Manage Solved Problems**: Dedicated window for fine-tuned control
+- **Bulk Operations**: Mark multiple problems as unsolved
 - **Clear All Data**: Remove all stored data and start fresh
 
 ### Debugging Tools
@@ -137,8 +194,10 @@ Create an Excel file (.xlsx or .xls) with this structure:
 ```
 leetcode-picker/
 ├── manifest.json          # Extension configuration
-├── popup.html             # Extension UI
+├── popup.html             # Main extension UI
 ├── popup.js              # Main application logic
+├── solved-manager.html   # Solved problems management UI
+├── solved-manager.js     # Solved problems management logic
 ├── excel-parser.js       # SheetJS-powered Excel parser
 ├── xlsx.min.js          # SheetJS library
 └── README.md            # This file
@@ -155,6 +214,7 @@ Contributions are welcome! Please feel free to:
 
 ## 📝 Version History
 
+- **v1.1**: Advanced solved problems management with dedicated interface, visual status indicators, and granular control
 - **v1.0**: Professional Excel support with SheetJS, progress tracking, modern UI
 
 ## 🎉 Getting Started

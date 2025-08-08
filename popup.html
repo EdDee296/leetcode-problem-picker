@@ -207,6 +207,61 @@
             border: 1px solid rgba(66, 153, 225, 0.5);
         }
         
+        .solved-problems-section {
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .solved-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .solved-count {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .manage-solved-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: auto;
+            margin: 0;
+        }
+        
+        .manage-solved-btn:hover {
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mini-btn {
+            padding: 4px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mini-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
         label {
             display: block;
             margin: 15px 0 5px 0;
@@ -262,6 +317,12 @@
             </div>
         </div>
         
+        <div id="solvedProblemsSection" class="solved-problems-section" style="display: none;">
+            <div id="solvedProblemsList">
+                <!-- Solved problems summary and manage button will be populated here -->
+            </div>
+        </div>
+        
         <label for="questionCount">🔢 Number of Questions:</label>
         <input type="number" id="questionCount" min="1" max="50" value="5" placeholder="Enter number of questions (1-50)" />
         
@@ -274,10 +335,6 @@
         
         <button id="openProblemsBtn" class="primary-btn" disabled>
             🎯 Open Random Problems
-        </button>
-        
-        <button id="resetSolvedBtn" class="warning-btn" style="display: none;">
-            🔄 Reset Solved Problems
         </button>
         
         <button id="clearDataBtn" class="secondary-btn">

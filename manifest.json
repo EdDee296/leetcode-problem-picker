@@ -13,7 +13,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["xlsx.min.js"],
+      "resources": ["xlsx.min.js", "solved-manager.html", "solved-manager.js"],
       "matches": ["<all_urls>"]
     }
   ]

@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const excludeSolved = document.getElementById('excludeSolved');
     const openProblemsBtn = document.getElementById('openProblemsBtn');
     const clearDataBtn = document.getElementById('clearDataBtn');
-    const resetSolvedBtn = document.getElementById('resetSolvedBtn');
     const debugBtn = document.getElementById('debugBtn');
     const status = document.getElementById('status');
     const statsSection = document.getElementById('statsSection');
+    const solvedProblemsSection = document.getElementById('solvedProblemsSection');
+    const solvedProblemsList = document.getElementById('solvedProblemsList');
 
     // Load saved data on startup
     loadSavedData();
@@ -35,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     excludeSolved.addEventListener('change', onExcludeSolvedChange);
     openProblemsBtn.addEventListener('click', openRandomProblems);
     clearDataBtn.addEventListener('click', clearAllData);
-    resetSolvedBtn.addEventListener('click', resetSolvedProblems);
     debugBtn.addEventListener('click', debugFileInfo);
 
     async function handleFileUpload(event) {
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!company || !spreadsheetData[company]) {
             statsSection.style.display = 'none';
-            resetSolvedBtn.style.display = 'none';
+            solvedProblemsSection.style.display = 'none';
             openProblemsBtn.disabled = true;
             return;
         }
@@ -357,7 +357,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('remainingProblems').textContent = remainingCount;
         
         statsSection.style.display = 'block';
-        resetSolvedBtn.style.display = solvedCount > 0 ? 'block' : 'none';
+        
+        // Update solved problems list
+        updateSolvedProblemsList(companySolved);
 
         // Update button state
         const requestedCount = parseInt(questionCount.value) || 0;
@@ -488,24 +490,26 @@ document.addEventListener('DOMContentLoaded', function() {
         return shuffled.slice(0, count);
     }
 
-    async function resetSolvedProblems() {
-        const company = companySelect.value;
-        if (!company) return;
+    function updateSolvedProblemsList(companySolvedProblems) {
+        if (companySolvedProblems.length === 0) {
+            solvedProblemsSection.style.display = 'none';
+            return;
+        }
         
-        try {
-            // Remove solved problems for this company
-            const companyProblems = spreadsheetData[company];
-            companyProblems.forEach(url => {
-                solvedProblems.delete(url);
-            });
-            
-            await saveSolvedProblems();
-            updateStatsAndButton();
-            showStatus(`🔄 Reset solved problems for ${company}`, 'success');
-            
-        } catch (error) {
-            console.error('Error resetting solved problems:', error);
-            showStatus('❌ Error resetting solved problems.', 'error');
+        solvedProblemsSection.style.display = 'block';
+        
+        // Clear existing list and add summary with manage button
+        solvedProblemsList.innerHTML = `
+            <div class="solved-summary">
+                <span class="solved-count">${companySolvedProblems.length} solved problems</span>
+                <button class="manage-solved-btn" id="manageSolvedBtn">Manage Solved</button>
+            </div>
+        `;
+        
+        // Add event listener to the manage button
+        const manageSolvedBtn = document.getElementById('manageSolvedBtn');
+        if (manageSolvedBtn) {
+            manageSolvedBtn.addEventListener('click', openSolvedManager);
         }
     }
 
@@ -612,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function() {
             companySelect.innerHTML = '<option value="">First upload a spreadsheet...</option>';
             companySelect.disabled = true;
             openProblemsBtn.disabled = true;
-            resetSolvedBtn.style.display = 'none';
+            solvedProblemsSection.style.display = 'none';
             statsSection.style.display = 'none';
             fileInput.value = '';
             questionCount.value = 5;
@@ -789,4 +793,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 5000);
         }
     }
+
+    function openSolvedManager() {
+        chrome.windows.create({
+            url: chrome.runtime.getURL('solved-manager.html'),
+            type: 'popup',
+            width: 900,
+            height: 700
+        });
+    }
+
+    window.openSolvedManager = function() {
+        chrome.windows.create({
+            url: chrome.runtime.getURL('solved-manager.html'),
+            type: 'popup',
+            width: 900,
+            height: 700
+        });
+    };
 });
